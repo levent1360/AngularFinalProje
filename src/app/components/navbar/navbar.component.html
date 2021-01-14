@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary w-100">
+    <div class="container-fluid">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="col-md-4">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Link</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Ara ..." aria-label="Search"><button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="col-md-4" *ngIf="this.service.OturumKontrol()">
+                <button class="btn btn-danger text-white mx-3 float-end" type="submit" (click)="OturumKapat()"><i class="fas fa-power-off"></i> Çıkış</button>
+                <button [routerLink]="['/yonetici']" class="btn btn-success text-white mx-3 float-end" type="submit"><i class="fas fa-sign-in-alt"></i> Yönetici Paneli</button>
+
+            </div>
+            <div class="col-md-4" *ngIf="!this.service.OturumKontrol()">
+                <button [routerLink]="['/giris']" class="btn btn-success text-white mx-3 float-end" type="submit"><i class="fas fa-sign-in-alt"></i> Giriş Yap</button>
+                <button [routerLink]="['/uyeol']" class="btn btn-success text-white mx-3 float-end" type="submit"> <i class="fas fa-user"></i> Üye Ol</button>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,158 @@
+<div class="d-flex">
+
+    <!-- Üye Tipi Listesi-->
+    <div class="col-md-4 mx-2">
+        <div class="card">
+            <div class="card-header d-flex">
+                <div class="col-6">
+                    <h4>Üye Tipleri</h4>
+                </div>
+                <div class="col-6"><a class="btn btn-outline-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#tipekle">Yeni Ekle</a></div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead class="text-center">
+                            <tr>
+                                <th>Üye Tipi</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let tip of uyeTipler">
+                                <td>{{tip.UyeTipi}}</td>
+                                <td>
+                                    <button class="btn btn-outline-warning btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#duzenle" (click)="secUyeTipi(tip)"><i class="fas fa-edit"></i> Düzenle</button>
+                                    <button class="btn btn-outline-danger btn-sm mx-1"><i class="fas fa-trash-alt"></i> Sil</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- İlan Tipi-->
+    <div class="col-md-4 mx-2">
+
+        <div class="card">
+            <div class="card-header d-flex">
+                <div class="col-6">
+                    <h4>Üye Tipleri</h4>
+                </div>
+                <div class="col-6"><a class="btn btn-outline-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#tipekle">Yeni Ekle</a></div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead class="text-center">
+                            <tr>
+                                <th>Üye Tipi</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let tip of uyeTipler">
+                                <td>{{tip.UyeTipi}}</td>
+                                <td>
+                                    <button class="btn btn-outline-warning btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#duzenle" (click)="secUyeTipi(tip)"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-outline-danger btn-sm mx-1"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- İl İlçe-->
+    <div class="col-md-4 mx-2">
+        <div class="card">
+            <div class="card-header d-flex">
+                <div class="col-6">
+                    <h4>İl İlçe</h4>
+                </div>
+                <div class="col-6"><a class="btn btn-outline-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#tipekle">Yeni Ekle</a></div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead class="text-center">
+                            <tr>
+                                <th>İl</th>
+                                <th>İlçe</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let tip of uyeTipler">
+                                <td>{{tip.UyeTipi}}</td>
+                                <td>{{tip.UyeTipi}}</td>
+                                <td>
+                                    <button class="btn btn-outline-warning btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#duzenle" (click)="secUyeTipi(tip)"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-outline-danger btn-sm mx-1"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="duzenle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Üye Tipi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form style="font-size: 0.5rem;">
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye UID</label>
+                        <input type="text" class="form-control" readonly value=" {{seciliUyeTipi.key}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Ad Soyad</label>
+                        <input type="text" class="form-control" value=" {{seciliUyeTipi.UyeTipi}}">
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tip Ekle -->
+<div class="modal fade" id="tipekle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Üye Tipi Ekle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form #uyetipForm="ngForm" style="font-size: 0.5rem;" (ngSubmit)="uyeTipiekle()">
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Tipi</label>
+                        <input type="text" class="form-control" name="UyeTipi" [(ngModel)]="yeniuyeTipi.UyeTipi" required>
+                    </div>
+                    <button type="submit" class="btn btn-outline-success">Kaydet</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

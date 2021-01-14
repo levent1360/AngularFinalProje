@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card mt-5">
+                <div class="card-header text-center">
+                    Giriş Yap
+                </div>
+                <div class="card-body">
+                    <form #frm="ngForm" (ngSubmit)="GirisYap()">
+                        <div class="mb-3">
+                            <input type="email" class="form-control" name="uyemail" placeholder="Email Adresiniz" #uyemail [(ngModel)]="uye.Email">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" name="uyesifre" placeholder="Şifreniz" #uyesifre [(ngModel)]="uye.Sifre">
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="submit" [disabled]="frm.invalid">Giriş Yap</button>
+                        </div>
+                        <div class="" role="alert" [ngClass]="info.durum ? 'd-none':'form-group '+info.bclass">
+                            <span>{{info.mesaj}}</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

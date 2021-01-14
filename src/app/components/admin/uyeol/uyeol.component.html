@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card mt-5">
+                <div class="card-header text-center">
+                    Üye Ol
+                </div>
+                <div class="card-body">
+                    <form #frm="ngForm" (ngSubmit)="UyeOl()">
+                        <div class="mb-3">
+                            <label class="form-label">Adınız Soyadınız</label>
+                            <input type="text" class="form-control" name="uyead" #uyead [(ngModel)]="uye.AdSoyad">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email Adresiniz</label>
+                            <input type="email" class="form-control" name="uyemail" #uyemail [(ngModel)]="uye.Email">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Şifre</label>
+                            <input type="password" class="form-control" name="uyesifre" #uyesifre [(ngModel)]="uye.Sifre">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" name="uyesozlesme" #uyesozlesme [(ngModel)]="uye.SozlesmeKabul">
+                            <label class="form-check-label"><a [routerLink]="['/uyeol']">Üyelik Sözleşmesi</a>’ni okudum ve kabul ediyorum.</label>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <input type="submit" value="Kaydet" class="btn btn-primary" [disabled]="frm.invalid">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

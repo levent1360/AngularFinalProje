@@ -1,0 +1,92 @@
+<div class="card">
+    <div class="card-header d-flex">
+        <div class="col-6">
+            <h4>Üyeler</h4>
+        </div>
+        <div class="col-6"><a class="btn btn-outline-success btn-sm float-end">Yeni Ekle</a></div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead class="text-center">
+                    <tr>
+                        <th>Üye E-Posta</th>
+                        <th>Üye Ad Soyad</th>
+                        <th>Üye Tipi</th>
+                        <th>Üye Kayıt Tarihi</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let uye of uyeler">
+                        <td>{{uye.Email}}</td>
+                        <td>{{uye.AdSoyad}}</td>
+                        <td>{{uye.UyeTipi}}</td>
+                        <td>{{uye.KayitTarih}}</td>
+                        <td>
+                            <button class="btn btn-outline-primary btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#detay" (click)="secUye(uye)"><i class="fas fa-address-card"></i> Detay</button>
+                            <button class="btn btn-outline-warning btn-sm mx-1"><i class="fas fa-edit"></i> Düzenle</button>
+                            <button class="btn btn-outline-danger btn-sm mx-1"><i class="fas fa-trash-alt"></i> Sil</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="detay" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Üye Detayları</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form style="font-size: 0.5rem;">
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye UID</label>
+                        <input type="email" class="form-control" readonly value=" {{seciliUye.Uid}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Ad Soyad</label>
+                        <input type="email" class="form-control" readonly value=" {{seciliUye.AdSoyad}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Tipi</label>
+                        <input type="email" class="form-control" readonly value=" {{seciliUye.UyeTipi}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye İl İlçe</label>
+                        <input type="email" class="form-control" readonly value=" {{seciliUye.Il}}"> <input type="email" class="form-control" readonly value=" {{seciliUye.Ilce}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Kayıt Tarihi</label>
+                        <input type="email" class="form-control" readonly value=" {{seciliUye.KayitTarih}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Son Günc. Tar.</label>
+                        <input type="email" class="form-control" readonly value=" {{seciliUye.GuncellemeTarih}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Son Giriş Tar.</label>
+                        <input type="email" class="form-control" readonly value=" {{seciliUye.SonGirisTarih}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Telefon</label>
+                        <input type="email" class="form-control" readonly value=" {{seciliUye.Tel}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Adres</label>
+                        <input type="email" class="form-control" readonly value=" {{seciliUye.Adres}}">
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
