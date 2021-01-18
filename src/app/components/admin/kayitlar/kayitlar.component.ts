@@ -32,6 +32,7 @@ export class KayitlarComponent implements OnInit {
   }
 
   kayitSec(k:Kayitlar){
+    this.secKayit=new Kayitlar();
     Object.assign(this.secKayit,k);
   }
 

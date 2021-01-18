@@ -1,3 +1,4 @@
+import { FirebaseService } from 'src/app/services/firebase.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminhomeComponent implements OnInit {
 
-  constructor() { }
+  girisYapan:string;
+  constructor(public service:FirebaseService) { }
 
   ngOnInit(): void {
+    this.girisY()
+  }
+
+  girisY(){
+    console.log(this.service.OturumAcan())
+    
+    this.girisYapan=this.service.OturumAcan();
   }
 
 }

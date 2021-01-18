@@ -4,11 +4,11 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse">
             <div class="col-md-4">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Link</a>
+                        <a class="nav-link text-white" [routerLink]="['/']">Anasayfa</a>
                     </li>
                 </ul>
             </div>
@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-4" *ngIf="this.service.OturumKontrol()">
                 <button class="btn btn-danger text-white mx-3 float-end" type="submit" (click)="OturumKapat()"><i class="fas fa-power-off"></i> Çıkış</button>
-                <button [routerLink]="['/yonetici']" class="btn btn-success text-white mx-3 float-end" type="submit"><i class="fas fa-sign-in-alt"></i> Yönetici Paneli</button>
+                <button [routerLink]="['/yonetici']" *ngIf="!this.service.isAdmin()" class="btn btn-success text-white mx-3 float-end" type="submit"><i class="fas fa-sign-in-alt"></i> Yönetici Paneli</button>
 
             </div>
             <div class="col-md-4" *ngIf="!this.service.OturumKontrol()">

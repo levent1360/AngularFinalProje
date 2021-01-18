@@ -1,0 +1,4 @@
+.scroll-bar-y {
+    height: 400px;
+    overflow-y: scroll;
+}

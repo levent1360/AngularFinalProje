@@ -1,90 +1,10 @@
-<!-- <div class="container mt-5">
-    <div class="row float-right"><button type="submit" class="btn btn-primary" (click)="logout()">Çıkış Yap</button></div>
-</div> -->
-<!-- Kayıt Ekle-->
-<!-- <div class="row mb-4" *ngIf="kayitekle">
-        <div class="card">
-            <div class="card-header d-flex bg-info text-white">
-                <h4>Kayıt Ekle</h4>
-            </div>
-            <div class="card-body">
-                <form #frmEkle="ngForm" (ngSubmit)="yenikayitekle()">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="baslik" [(ngModel)]="yeniKayit.baslik" placeholder="Başlık">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="aciklama" [(ngModel)]="yeniKayit.aciklama" placeholder="Açıklama">
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-outline-success" value="Kaydet">
-                        <button class="btn btn-outline-danger float-right" (click)="kayitekle=false;">Kapat</button>
-                    </div>
-                    <div [ngClass]="sonuc.islem ? 'form-group alert alert-success':'d-none'">{{sonuc.mesaj}}</div>
-                </form>
-            </div>
-        </div>
-    </div> -->
-<!-- Kayıt Düzenle-->
-<!-- <div class="row mb-4" *ngIf="kayitduzenle">
-        <div class="card">
-            <div class="card-header d-flex bg-info text-white">
-                <h4>{{secKayit.key}} - kayıt düzenleniyor...</h4>
-            </div>
-            <div class="card-body">
-                <form #frmDuzenle="ngForm" (ngSubmit)="kayitDuzenle()">
-                    <div class="form-group">
-                        <span class="input-group-text">Kayıt Zamanı : {{secKayit.kayTarihi | date:'dd/MM/yyyy HH:mm:ss'}}</span>
-                    </div>
-                    <div class="form-group">
-                        <span class="input-group-text">Son Düzenleme Zamanı : {{secKayit.duzTarihi | date:'dd/MM/yyyy HH:mm:ss'}}</span>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="baslik" [(ngModel)]="secKayit.baslik" placeholder="Başlık">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="aciklama" [(ngModel)]="secKayit.aciklama" placeholder="Açıklama">
-                    </div>
-                    <div class="form-group">
-                        <select class="custom-select" name="islem" [(ngModel)]="secKayit.islem">
-                            <option selected *ngFor="let is of secislem" [ngValue]="is.s">{{is.d}}</option>
-                          </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-outline-success" value="Kaydet">
-                        <button class="btn btn-outline-danger float-right" (click)="kayitduzenle=false;">Kapat</button>
-                    </div>
-                    <div [ngClass]="sonuc.islem ? 'form-group alert alert-success':'d-none'">{{sonuc.mesaj}}</div>
-                </form>
-            </div>
-        </div>
-    </div> -->
-<!-- Kayıt Detayları-->
-<!-- <div class="row mb-4" *ngIf="kayitdetay">
-        <div class="card">
-            <div class="card-header d-flex bg-info text-white">
-                <h4>Kayıt Detayları</h4>
-            </div>
-            <div class="card-body">
-                <div class="form-group">
-                    <span class="input-group-text">Kayıt Zamanı : {{secKayit.kayTarihi | date:'dd.MM.yyyy HH:mm:ss'}}</span>
-                    <span class="input-group-text">Son Değiştirme Zamanı : {{secKayit.duzTarihi | date:'dd.MM.yyyy HH:mm:ss'}}</span>
-                    <span class="input-group-text">Başlık : {{secKayit.baslik}}</span>
-                    <span class="input-group-text">Açıklama : {{secKayit.aciklama}}</span>
-                    <span class="input-group-text">Durum :
-                        <span *ngIf="secKayit.islem">  Başarılı</span>
-                    <span *ngIf="!secKayit.islem">  Başarısız</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div> -->
 <!-- Kayıt Listesi-->
 <div class="card">
     <div class="card-header d-flex">
         <div class="col-6">
             <h4>Liste</h4>
         </div>
-        <div class="col-6"><a class="btn btn-outline-success btn-sm float-end" routerLink="../kayitekle">Yeni Ekle</a></div>
+        <div class="col-6"><a class="btn btn-outline-success btn-sm float-end" routerLink="../kayitekle"><i class="fas fa-plus"></i> Yeni Ekle</a></div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -93,7 +13,8 @@
                     <tr>
                         <th>#</th>
                         <th>Başlık</th>
-                        <th>Durum</th>
+                        <th>İlan Türü</th>
+                        <th>Fiyat</th>
                         <th>İşlemler</th>
                     </tr>
                 </thead>
@@ -101,16 +22,82 @@
                     <tr *ngFor="let kayit of kayitlar;index as i">
                         <td>{{i+1}}</td>
                         <td>{{kayit.IlanBaslik}}</td>
+                        <td>{{kayit.IlanTipi}}</td>
+                        <td>{{kayit.Fiyat}}</td>
                         <td>
-                        </td>
-                        <td>
-                            <button class="btn btn-outline-primary btn-sm mr-1" (click)="kayitSec(kayit);kayitdetay=true;kayitekle=false;kayitduzenle=false">Detay</button>
-                            <button class="btn btn-outline-warning btn-sm mr-1" (click)="kayitSec(kayit);kayitduzenle=true;kayitdetay=false;kayitekle=false;">Düzenle</button>
-                            <button class="btn btn-outline-danger btn-sm mr-1" (click)="kayitsil(kayit)">Sil</button>
+                            <button class="btn btn-outline-primary btn-sm mx-1" (click)="kayitSec(kayit)" data-bs-toggle="modal" data-bs-target="#detay"><i class="fas fa-address-card"></i> Detay</button>
+                            <button class="btn btn-outline-warning btn-sm mx-1" [routerLink]="['../kayitduzenle',kayit.key]"><i class="fas fa-edit"></i> Düzenle</button>
+                            <button class="btn btn-outline-danger btn-sm mx-1" (click)="kayitsil(kayit)"><i class="fas fa-trash-alt"></i> Sil</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+<!-- Detay -->
+<div class="modal fade" id="detay" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">İlan Detayları</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form style="font-size: 0.5rem;">
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Fotoğraflar</label>
+                        <img class="img-fluid rounded  mx-2" src="{{secKayit.Foto1}}" alt="" width="100"> <img class="img-fluid rounded  mx-2" src="{{secKayit.Foto2}}" alt="" width="100"> <img class="img-fluid rounded  mx-2" src="{{secKayit.Foto3}}" alt=""
+                            width="100">
+
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Başlık</label>
+                        <input type="text" class="form-control" readonly value=" {{secKayit.IlanBaslik}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Türü</label>
+                        <input type="text" class="form-control" readonly value=" {{secKayit.IlanTipi}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Fiyat</label>
+                        <input type="text" class="form-control" readonly value=" {{secKayit.Fiyat}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">İl İlçe</label>
+                        <input type="text" class="form-control" readonly value=" {{secKayit.Il}}"><input type="text" class="form-control" readonly value=" {{secKayit.Ilce}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Oda Sayısı</label>
+                        <input type="text" class="form-control" readonly value=" {{secKayit.OdaSayisi}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Metrekare</label>
+                        <input type="text" class="form-control" readonly value=" {{secKayit.MKare}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Eşya Durumu</label>
+                        <input type="text" class="form-control" readonly value=" {{secKayit.EsyaDurum}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Açıklama</label>
+                        <input type="text" class="form-control" readonly value=" {{secKayit.IlanAciklama}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Ekleme Tarihi</label>
+                        <input type="text" class="form-control" readonly value=" {{secKayit.EklemeTarih | date:'dd/MM/yyyy HH:mm:ss'}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Düzenleme Tarihi</label>
+                        <input type="text" class="form-control" readonly value=" {{secKayit.DuzenlemeTarih | date:'dd/MM/yyyy HH:mm:ss'}}">
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Kapat</button>
+            </div>
         </div>
     </div>
 </div>

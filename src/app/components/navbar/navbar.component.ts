@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
   OturumKapat() {
     this.service.oturumKapat().then(() => {
       localStorage.removeItem('user');
+      localStorage.removeItem('yetki');
       indexedDB.deleteDatabase('firebaseLocalStorageDb');
       this.route.navigate(['/']);
     });

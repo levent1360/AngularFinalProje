@@ -23,6 +23,10 @@ import { environment } from 'src/environments/environment';
 import { AdminhomeComponent } from './components/admin/adminhome/adminhome.component';
 import { AdminsideComponent } from './components/admin/adminside/adminside.component';
 import { AyarlarComponent } from './components/admin/ayarlar/ayarlar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
+import { UyeduzenleComponent } from './components/admin/uyeduzenle/uyeduzenle.component';
 
 
 @NgModule({
@@ -43,7 +47,8 @@ import { AyarlarComponent } from './components/admin/ayarlar/ayarlar.component';
     YetkisizgirisComponent,
     AdminhomeComponent,
     AdminsideComponent,
-    AyarlarComponent
+    AyarlarComponent,
+    UyeduzenleComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +56,8 @@ import { AyarlarComponent } from './components/admin/ayarlar/ayarlar.component';
     FormsModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot()
 
   ],
   providers: [],

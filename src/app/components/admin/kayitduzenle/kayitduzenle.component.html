@@ -1,1 +1,90 @@
-<p>kayitduzenle works!</p>
+<div class="card">
+    <div class="card-header bg-info text-white">
+        <h4>Kayıt Ekle</h4>
+    </div>
+    <div class="card-body">
+        <form #frmEkle="ngForm" (ngSubmit)="kayitDuzenle()">
+            <h5>Ev Fotoğrafları Ekleme Bölümü</h5>
+            <div class="mb-1">
+                <label class="form-label">İlan Resim 1</label>
+                <div class="d-flex">
+                    <input type="text" class="form-control" name="Foto1" [(ngModel)]="secKayit.Foto1" width="70%" placeholder="İlana ait fotoğraf url veya dosya adresini buraya yapıştırınız.">
+                    <img class="col-md-1 mx-1" src="{{secKayit.Foto1}}" width="20%" alt="">
+                </div>
+            </div>
+            <div class="mb-1">
+                <label class="form-label">İlan Resim 2</label>
+                <div class="d-flex">
+                    <input type="text" class="form-control" name="Foto2" [(ngModel)]="secKayit.Foto2" width="70%" placeholder="İlana ait fotoğraf url veya dosya adresini  buraya yapıştırınız.">
+                    <img class="col-md-1 mx-1" src="{{secKayit.Foto2}}" width="20%" alt="">
+                </div>
+            </div>
+            <div class="mb-1">
+                <label class="form-label">İlan Resim 3</label>
+                <div class="d-flex">
+                    <input type="text" class="form-control" name="Foto3" [(ngModel)]="secKayit.Foto3" width="70%" placeholder="İlana ait fotoğraf url veya dosya adresini buraya yapıştırınız.">
+                    <img class="col-md-1 mx-1" src="{{secKayit.Foto3}}" width="20%" alt="">
+                </div>
+            </div>
+            <hr>
+            <h5>Ev Bilgiler Ekleme Bölümü</h5>
+            <hr>
+            <div class="d-flex ">
+                <div class="col-md-6 me-3">
+                    <div class="mb-1">
+                        <label class="form-label">İlan Başlık</label>
+                        <input type="text" class="form-control" name="IlanBaslik" [(ngModel)]="secKayit.IlanBaslik">
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">İlan Fiyat</label>
+                        <input type="number" class="form-control" name="Fiyat" #uyead [(ngModel)]="secKayit.Fiyat">
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">İlan Metrekare Bilgisi</label>
+                        <input type="number" class="form-control" name="MKare" #uyead [(ngModel)]="secKayit.MKare">
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">İlan İlan Tipi</label>
+                        <select class="form-select" name="IlanTipi" [(ngModel)]="secKayit.IlanTipi">
+                            <option *ngFor="let iltip of ilanTipler" [ngValue]="iltip.IlanTipi">{{iltip.IlanTipi}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-1">
+                        <label class="form-label">Oda Sayısı</label>
+                        <select class="form-select" name="OdaSayisi" [(ngModel)]="secKayit.OdaSayisi">
+                            <option *ngFor="let oda of odalar" [ngValue]="oda.OdaSayisi">{{oda.OdaSayisi}}</option>
+                        </select>
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Eşya Durumu</label>
+                        <select class="form-select" name="IlanTipi" [(ngModel)]="secKayit.EsyaDurum">
+                            <option *ngFor="let ed of esyaDurumu" [ngValue]="ed.name">{{ed.name}}</option>
+                          </select>
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">İlan İli</label>
+                        <select class="form-select" name="il" [(ngModel)]="secKayit.Il">
+                            <option *ngFor="let ililce of ililceler" [ngValue]="ililce.Il">{{ililce.Il}}</option>
+                        </select>
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">İlan İlçesi</label>
+                        <select class="form-select" name="ilce" [(ngModel)]="secKayit.Ilce">
+                            <option *ngFor="let ililce of ililceler" [ngValue]="ililce.Ilce">{{ililce.Ilce}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-1">
+                <label class="form-label">İlan Açılaması</label>
+                <textarea name="IlanAciklama" class="form-control" cols="10" rows="5" [(ngModel)]="secKayit.IlanAciklama"></textarea>
+            </div>
+            <div class="form-group mt-4">
+                <input type="submit" class="btn btn-outline-success" value="Kaydet">
+                <a class="btn btn-outline-danger float-end" routerLink="../../kayitlar">Vazgeç</a>
+            </div>
+        </form>
+    </div>
+</div>

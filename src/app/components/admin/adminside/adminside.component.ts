@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { FirebaseService } from 'src/app/services/firebase.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminsideComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service: FirebaseService, public route:Router) { }
 
   ngOnInit(): void {
   }
 
+  cikisYap() {
+    this.service.oturumKapat().then(() => {
+      localStorage.removeItem('user');
+      localStorage.removeItem('yetki');
+      indexedDB.deleteDatabase('firebaseLocalStorageDb');
+      this.route.navigate(['']);
+    })
+  }
 }

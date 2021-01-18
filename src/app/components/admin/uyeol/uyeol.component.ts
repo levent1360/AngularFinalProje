@@ -32,6 +32,9 @@ export class UyeolComponent implements OnInit {
         this.uye.SonGirisTarih = u.user.metadata.lastSignInTime;
         this.uye.GuncellemeTarih = u.user.metadata.creationTime;
         this.uye.UyeTipi = "Üye";
+        this.uye.Il = "";
+        this.uye.Ilce = "";
+        this.uye.Tel = "";
         console.log(this.uye)
         this.service.uyeEkle(this.uye);
         this.router.navigate(['/giris'])

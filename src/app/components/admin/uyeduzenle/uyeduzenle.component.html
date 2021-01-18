@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row">
+        <form style="font-size: 0.5rem;" #frm="ngForm" (ngSubmit)="uyeDuzenle()">
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h4>Üye Düzenle</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye UID</label>
+                        <input type="text" class="form-control" readonly value=" {{seciliUye.Uid}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Ad Soyad</label>
+                        <input type="text" class="form-control" name="AdSoyad" [(ngModel)]="seciliUye.AdSoyad">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Tipi</label>
+                        <select class="form-select" name="IlanTipi" [(ngModel)]="seciliUye.UyeTipi">
+                            <option *ngFor="let yetki of yetkiler" [ngValue]="yetki.UyeTipi">{{yetki.UyeTipi}}</option>
+                       </select>
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye İl İlçe</label>
+                        <select class="form-select" name="Il" [(ngModel)]="seciliUye.Il">
+                            <option *ngFor="let il of ililceler" [ngValue]="il.Il">{{il.Il}}</option>
+                        </select>
+                        <select class="form-select" name="Ilce" [(ngModel)]="seciliUye.Ilce">
+                            <option *ngFor="let il of ililceler" [ngValue]="il.Ilce">{{il.Ilce}}</option>
+                        </select>
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Kayıt Tarihi</label>
+                        <input type="text" class="form-control" readonly value=" {{seciliUye.KayitTarih | date:'dd/MM/yyyy HH:mm:ss'}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Son Günc. Tar.</label>
+                        <input type="text" class="form-control" readonly value=" {{seciliUye.GuncellemeTarih | date:'dd/MM/yyyy HH:mm:ss'}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Son Giriş Tar.</label>
+                        <input type="text" class="form-control" readonly value=" {{seciliUye.SonGirisTarih | date:'dd/MM/yyyy HH:mm:ss'}}">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Telefon</label>
+                        <input type="text" class="form-control" name="Tel" [(ngModel)]="seciliUye.Tel">
+                    </div>
+                    <div class="mb-1 d-flex">
+                        <label class="form-label col-md-3">Üye Adres</label>
+                        <input type="text" class="form-control" name="Adres" [(ngModel)]="seciliUye.Adres">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="submit" value="Kaydet" class="btn btn-outline-success" [disabled]="frm.invalid">
+                    <a class="btn btn-outline-danger float-end" routerLink="../../uyeler">Vazgeç</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

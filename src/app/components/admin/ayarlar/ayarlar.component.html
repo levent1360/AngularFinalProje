@@ -1,15 +1,15 @@
-<div class="d-flex">
+<div class="row">
 
-    <!-- Üye Tipi Listesi-->
-    <div class="col-md-4 mx-2">
+    <!-- Üye Tipi Listesi İşlemleri-->
+    <div class="col-md-4 mx-2 mb-3">
         <div class="card">
             <div class="card-header d-flex">
                 <div class="col-6">
-                    <h4>Üye Tipleri</h4>
+                    <h6>Üye Tipleri</h6>
                 </div>
-                <div class="col-6"><a class="btn btn-outline-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#tipekle">Yeni Ekle</a></div>
+                <div class="col-6"><a class="btn btn-outline-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#uyetipiekle"><i class="fas fa-plus"></i> Yeni</a></div>
             </div>
-            <div class="card-body">
+            <div class="card-body scroll-bar-y">
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
                         <thead class="text-center">
@@ -22,8 +22,8 @@
                             <tr *ngFor="let tip of uyeTipler">
                                 <td>{{tip.UyeTipi}}</td>
                                 <td>
-                                    <button class="btn btn-outline-warning btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#duzenle" (click)="secUyeTipi(tip)"><i class="fas fa-edit"></i> Düzenle</button>
-                                    <button class="btn btn-outline-danger btn-sm mx-1"><i class="fas fa-trash-alt"></i> Sil</button>
+                                    <button class="btn btn-outline-warning btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#uyetipduzenle" (click)="secUyeTipi(tip)"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-outline-danger btn-sm mx-1" (click)="uyeTipiSil(tip)"><i class="fas fa-trash-alt"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -33,51 +33,147 @@
         </div>
     </div>
 
+    <!-- Üye Tipi Ekle -->
+    <div class="modal fade" id="uyetipiekle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Üye Tipi Ekle</h5>
+                    <button type="button" class="btn-close" #closeModal data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form #uyetipekleForm="ngForm" style="font-size: 0.5rem;" (ngSubmit)="uyeTipiekle()">
+                        <div class="mb-1 d-flex">
+                            <label class="form-label col-md-3">Üye Tipi</label>
+                            <input type="text" class="form-control" name="OdaSayisi" [(ngModel)]="yeniuyeTipi.UyeTipi" required>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Kaydet</button>
+                    </form>
 
-    <!-- İlan Tipi-->
-    <div class="col-md-4 mx-2">
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Üye Tip Düzenle -->
+    <div class="modal fade" id="uyetipduzenle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Üye Tipi Düzenle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form style="font-size: 0.5rem;" #utdForm="ngForm" (ngSubmit)="UyeTipDuzenle()">
+                        <div class="mb-1 d-flex">
+                            <label class="form-label col-md-3">Üye Tip Key</label>
+                            <input type="text" class="form-control" readonly value="{{seciliUyeTipi.key}}">
+                        </div>
+                        <div class="mb-1 d-flex">
+                            <label class="form-label col-md-3">Üye Tipi</label>
+                            <input type="text" class="form-control" name="UyeTipi" value="{{seciliUyeTipi.UyeTipi}}" [(ngModel)]="seciliUyeTipi.UyeTipi">
+                        </div>
+                        <div class="form-group mt-3">
+                            <button type="submit" class="btn btn-outline-success form-control">Kaydet</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-------------------------------------------------->
+
+
+    <!-- Odalar-->
+    <div class="col-md-4 mx-2  mb-3">
         <div class="card">
             <div class="card-header d-flex">
                 <div class="col-6">
-                    <h4>Üye Tipleri</h4>
+                    <h4>Odalar</h4>
                 </div>
-                <div class="col-6"><a class="btn btn-outline-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#tipekle">Yeni Ekle</a></div>
+                <div class="col-6"><a class="btn btn-outline-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#odalar"><i class="fas fa-plus"></i> Yeni</a></div>
             </div>
-            <div class="card-body">
+            <div class="card-body scroll-bar-y ">
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
                         <thead class="text-center">
                             <tr>
-                                <th>Üye Tipi</th>
+                                <th>Odalar</th>
                                 <th>İşlem</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let tip of uyeTipler">
-                                <td>{{tip.UyeTipi}}</td>
+                            <tr *ngFor="let oda of odalar">
+                                <td>{{oda.OdaSayisi}}</td>
                                 <td>
-                                    <button class="btn btn-outline-warning btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#duzenle" (click)="secUyeTipi(tip)"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-outline-danger btn-sm mx-1"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-outline-warning btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#odaduzenle" (click)="secOda(oda)"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-outline-danger btn-sm mx-1" (click)="OdaSil(oda)"><i class="fas fa-trash-alt"></i></button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Oda Ekle -->
+    <div class="modal fade" id="odalar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Oda Ekle</h5>
+                    <button type="button" class="btn-close" #closeModal data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form #odaekleForm="ngForm" style="font-size: 0.5rem;" (ngSubmit)="Odaekle()">
+                        <div class="mb-1 d-flex">
+                            <label class="form-label col-md-3">Oda Sayısı</label>
+                            <input type="text" class="form-control" name="OdaSayisi" [(ngModel)]="yeniOda.OdaSayisi" required>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Kaydet</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Oda Düzenle -->
+    <div class="modal fade" id="odaduzenle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Oda Düzenle</h5>
+                    <button type="button" class="btn-close" #closeModal data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form #odaekleForm="ngForm" style="font-size: 0.5rem;" (ngSubmit)="Odaekle()">
+                        <div class="mb-1 d-flex">
+                            <label class="form-label col-md-3">Oda Sayısı</label>
+                            <input type="text" class="form-control" name="OdaSayisi" [(ngModel)]="seciliOda.OdaSayisi" required>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Kaydet</button>
+                    </form>
+
                 </div>
             </div>
         </div>
     </div>
 
     <!-- İl İlçe-->
-    <div class="col-md-4 mx-2">
+    <div class="col-md-5 mx-2  mb-3">
         <div class="card">
             <div class="card-header d-flex">
                 <div class="col-6">
                     <h4>İl İlçe</h4>
                 </div>
-                <div class="col-6"><a class="btn btn-outline-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#tipekle">Yeni Ekle</a></div>
+                <div class="col-6"><a class="btn btn-outline-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#ililce"><i class="fas fa-plus"></i> Yeni</a></div>
             </div>
-            <div class="card-body">
+            <div class="card-body scroll-bar-y">
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
                         <thead class="text-center">
@@ -88,12 +184,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let tip of uyeTipler">
-                                <td>{{tip.UyeTipi}}</td>
-                                <td>{{tip.UyeTipi}}</td>
+                            <tr *ngFor="let ililce of ililceler">
+                                <td>{{ililce.Il}}</td>
+                                <td>{{ililce.Ilce}}</td>
                                 <td>
-                                    <button class="btn btn-outline-warning btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#duzenle" (click)="secUyeTipi(tip)"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-outline-danger btn-sm mx-1"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-outline-warning btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#ililceduzenle" (click)="secIlIlce(ililce)"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-outline-danger btn-sm mx-1" (click)="IlIlceil(ililce)"><i class="fas fa-trash-alt"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -103,56 +199,133 @@
         </div>
     </div>
 
-</div>
+    <!-- İl İlçe Ekle -->
+    <div class="modal fade" id="ililce" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Yeni İl ve İlçe Ekle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form #uililceForm="ngForm" style="font-size: 0.5rem;" (ngSubmit)="ililceekle()">
+                        <div class="mb-1 d-flex">
+                            <label class="form-label col-md-3">İl</label>
+                            <input type="text" class="form-control" name="UyeTipi" [(ngModel)]="yeniililce.Il" required>
+                        </div>
+                        <div class="mb-1 d-flex">
+                            <label class="form-label col-md-3">İlçe</label>
+                            <input type="text" class="form-control" name="UyeTipi" [(ngModel)]="yeniililce.Ilce" required>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Kaydet</button>
+                    </form>
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="duzenle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Üye Tipi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form style="font-size: 0.5rem;">
-                    <div class="mb-1 d-flex">
-                        <label class="form-label col-md-3">Üye UID</label>
-                        <input type="text" class="form-control" readonly value=" {{seciliUyeTipi.key}}">
-                    </div>
-                    <div class="mb-1 d-flex">
-                        <label class="form-label col-md-3">Üye Ad Soyad</label>
-                        <input type="text" class="form-control" value=" {{seciliUyeTipi.UyeTipi}}">
-                    </div>
-                </form>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Kapat</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Tip Ekle -->
-<div class="modal fade" id="tipekle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Üye Tipi Ekle</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form #uyetipForm="ngForm" style="font-size: 0.5rem;" (ngSubmit)="uyeTipiekle()">
-                    <div class="mb-1 d-flex">
-                        <label class="form-label col-md-3">Üye Tipi</label>
-                        <input type="text" class="form-control" name="UyeTipi" [(ngModel)]="yeniuyeTipi.UyeTipi" required>
-                    </div>
-                    <button type="submit" class="btn btn-outline-success">Kaydet</button>
-                </form>
+                </div>
 
             </div>
         </div>
     </div>
+
+    <!-- İl İlçe Düzenle -->
+    <div class="modal fade" id="ililceduzenle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">İl ve İlçe Düzenle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form #uililcedForm="ngForm" style="font-size: 0.5rem;" (ngSubmit)="ililceDuzenle()">
+                        <div class="mb-1 d-flex">
+                            <label class="form-label col-md-3">İl</label>
+                            <input type="text" class="form-control" name="il" [(ngModel)]="seciliIlIlce.Il" required>
+                        </div>
+                        <div class="mb-1 d-flex">
+                            <label class="form-label col-md-3">İlçe</label>
+                            <input type="text" class="form-control" name="ilce" [(ngModel)]="seciliIlIlce.Ilce" required>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- İlan Tipi Listesi-->
+    <div class="col-md-4 mx-2  mb-3">
+        <div class="card">
+            <div class="card-header d-flex">
+                <div class="col-6">
+                    <h4>İlan Tipi</h4>
+                </div>
+                <div class="col-6"><a class="btn btn-outline-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#ilantipekle"><i class="fas fa-plus"></i> Yeni</a></div>
+            </div>
+            <div class="card-body scroll-bar-y">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead class="text-center">
+                            <tr>
+                                <th>İl</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let ilantip of ilanTipler">
+                                <td>{{ilantip.IlanTipi}}</td>
+                                <td>
+                                    <button class="btn btn-outline-warning btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#ilantipduzenle" (click)="secIlanTip(ilantip)"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-outline-danger btn-sm mx-1" (click)="IlanTipSil(ilantip)"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- İlan Tip Ekle -->
+    <div class="modal fade" id="ilantipekle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Yeni İl ve İlçe Ekle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form #ilantipekleForm="ngForm" style="font-size: 0.5rem;" (ngSubmit)="ilantipiekle()">
+                        <div class="mb-1 d-flex">
+                            <label class="form-label col-md-3">İl</label>
+                            <input type="text" class="form-control" name="IlanTipi" [(ngModel)]="yeniIlanT.IlanTipi" required>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Kaydet</button>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- İlan Tip Düzenle -->
+    <div class="modal fade" id="ilantipduzenle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">İl ve İlçe Düzenle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form #uililcedForm="ngForm" style="font-size: 0.5rem;" (ngSubmit)="ilanTipiDuzenle()">
+                        <div class="mb-1 d-flex">
+                            <label class="form-label col-md-3">İl</label>
+                            <input type="text" class="form-control" name="il" [(ngModel)]="seciliIlanT.IlanTipi" required>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

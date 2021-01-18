@@ -2,9 +2,6 @@ export class Kayitlar {
   key: string;
   IlanNo: string;
   IlanBaslik: string;
-  EklemeTarih: string;
-  DuzenlemeTarih: string;
-  GoruntulenmeSayisi: number;
   EkleyenUid: string;
   IlanTipi: string;
   OdaSayisi: string;
@@ -13,12 +10,15 @@ export class Kayitlar {
   EsyaDurum: boolean;
   Isinma: string;
   IlanAciklama: string;
-  Il: string;
-  Ilce: string;
-  Konum: string;
   Foto1: string;
   Foto2: string;
   Foto3: string;
+  Il: string;
+  Ilce: string;
+  Konum: string;
+  EklemeTarih: string;
+  DuzenlemeTarih: string;
+  GoruntulenmeSayisi: number;
 }
 
 export class Oda {
@@ -28,7 +28,7 @@ export class Oda {
 
 export class İlanTipi {
   key: string;
-  İlanTipi: string
+  IlanTipi: string
 }
 
 export class UyeTipiM {
@@ -38,9 +38,8 @@ export class UyeTipiM {
 
 export class İlİlce {
   key: string;
-  İl: string;
-  İlkodu: string;
-  İlce: string;
+  Il: string;
+  Ilce: string;
 }
 
 export class Uyeler {
