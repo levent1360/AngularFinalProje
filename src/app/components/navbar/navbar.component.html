@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-4" *ngIf="this.service.OturumKontrol()">
                 <button class="btn btn-danger text-white mx-3 float-end" type="submit" (click)="OturumKapat()"><i class="fas fa-power-off"></i> Çıkış</button>
-                <button [routerLink]="['/yonetici']" *ngIf="!this.service.isAdmin()" class="btn btn-success text-white mx-3 float-end" type="submit"><i class="fas fa-sign-in-alt"></i> Yönetici Paneli</button>
+                <button [routerLink]="['/yonetici']" *ngIf="this.service.isAdmin()" class="btn btn-success text-white mx-3 float-end" type="submit"><i class="fas fa-sign-in-alt"></i> Yönetici Paneli</button>
 
             </div>
             <div class="col-md-4" *ngIf="!this.service.OturumKontrol()">

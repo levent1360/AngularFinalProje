@@ -14,6 +14,8 @@ export class GirisyapComponent implements OnInit {
   public info = new Mesaj(true, "", "");
   uid:string;
   uye: Uyeler = new Uyeler()
+  uyed:Uyeler[];
+  yetki:string;
 
 
   constructor(public service: FirebaseService, private router: Router) { }
@@ -24,7 +26,7 @@ export class GirisyapComponent implements OnInit {
       localStorage.setItem("user", JSON.stringify(u.user));
       var x=this.service.uyeByUid(this.uid).snapshotChanges().subscribe(data=>{
         const y = { ...data[0].payload.toJSON(), key: this.uid };
-        localStorage.setItem("yetki",JSON.stringify(y.UyeTipi))
+        localStorage.setItem("yetki",JSON.stringify(y))
       });
       
       this.router.navigate(['/']);

@@ -57,7 +57,7 @@ export class FirebaseService {
   }
 
   isAdmin() {
-    var yetki = localStorage.getItem('yetki')
+    var yetki = JSON.parse(localStorage.getItem('yetki')).UyeTipi;
     if (yetki == "Süper" || yetki == "Admin") {
       return true;
     }
