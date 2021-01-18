@@ -10,7 +10,6 @@ import { Component, OnInit } from '@angular/core';
 export class UyelerComponent implements OnInit {
 
   seciliUye: Uyeler = new Uyeler();
-  detaySayfasi=false;
 
   uyeler: Uyeler[];
   constructor(public service: FirebaseService) { }
